@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import {MySqlDB} from "../../../config/mysql";
 
-const DemandModel = MySqlDB.define(
+export const DemandModel = MySqlDB.define(
     "demands",
     {
         id: {
@@ -27,14 +27,11 @@ const DemandModel = MySqlDB.define(
             type: Sequelize.INTEGER,
             defaultValue: 0,
         },
-
         pallets_qtt: {
             type: Sequelize.INTEGER,
             defaultValue: 0,
         },
-
     }
 );
 
-module.exports = DemandModel;
 

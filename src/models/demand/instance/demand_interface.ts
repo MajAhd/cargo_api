@@ -1,14 +1,22 @@
 export interface iDemand {
-    id: number;
-    license_plate?: string;
+    get_demand(id:number): object
 
-    get_demand(): object
+    new_demand(params:iDemandCreate): object;
 
-    new_demand(): object;
+    update_demand(id:number , params:iDemandUpdate): object;
 
-    update_demand_routes(): object;
+    update_demand_status(id:number , params): object;
+}
 
-    update_demand_parcel(): object;
+export interface iDemandCreate extends iDemandUpdate{
+    user_id:number
+}
 
-    update_demand_status(): object;
+export interface iDemandUpdate{
+    origin_lat:number,
+    origin_lon:number,
+    delivery_lat:number,
+    delivery_lon:number,
+    total_weight:number,
+    pallets_qtt:number
 }

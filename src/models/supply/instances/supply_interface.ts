@@ -2,11 +2,11 @@ export interface iSupply {
 
     get_supply_info(id: number): object | null;
 
-    new_supplier(params: object): object;
+    new_supplier(params: iSupplier): object;
 
     update_supplier_license_plate(id: number, params: object): object;
 
-    update_supplier_cargo(id: number, params: object): object;
+    update_supplier_cargo(id: number, params: iSupplierCargo): object;
 }
 
 export interface iSupplier {

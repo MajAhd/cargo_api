@@ -7,7 +7,7 @@ import methodOverride from 'method-override';
 
 const app = express();
 // routes
-const DemandRoute = require("./routes/demand")
+const DemandRoute = require("./routes/demand.route")
 const SupplyRoute = require("./routes/supply.route")
 // App usages
 app.use(compression());
