@@ -10,6 +10,7 @@ export const get_demand = async (req, res, next) => {
     let demand_id = req.params["demand_id"];
     res.json({
         status: 200,
+        msg:"Get Demand",
         data: await Demand.get_demand(demand_id)
     });
 }
@@ -49,6 +50,7 @@ export const post_new_demand = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
+            msg:"Save New Demand",
             data: await Demand.new_demand(req.body)
         });
     }
@@ -90,6 +92,7 @@ export const post_update_demand = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
+            msg:"Update Demand",
             data: await Demand.update_demand(demand_id, req.body)
         });
     }
@@ -118,6 +121,7 @@ export const post_demand_status = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
+            msg:"Update Demand Status",
             data: await Demand.update_demand_status(demand_id, req.body)
         });
     }

@@ -13,4 +13,17 @@ describe("Supplier", () => {
         let result = await Supplier.get_supply_info(0)
         expect(result).to.be.equal(null);
     });
+
+    it("new supplier" , async () => {
+
+    })
+
+    it("update supplier license plate" , async () => {
+
+    })
+
+    it("update supplier cargo" , async () => {
+
+    })
+
 })

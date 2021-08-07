@@ -10,6 +10,7 @@ export const get_supplier = async (req, res, next) => {
     let supplier_id = req.params["supplier_id"];
     res.json({
         status: 200,
+        msg:"Get Supplier",
         data: await Supplier.get_supply_info(supplier_id)
     });
 }
@@ -54,6 +55,7 @@ export const post_new_supplier = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
+            msg:"Save New Supplier",
             data: await Supplier.new_supplier(req.body)
         });
     }
@@ -83,6 +85,7 @@ export const post_update_supplier_license_plate = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
+            msg:"Update Supplier license plate",
             data: await Supplier.update_supplier_license_plate(supplier_id, req.body)
         });
     }
@@ -125,6 +128,7 @@ export const post_update_supplier_cargo = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
+            msg:"Update Supplier supplier cargo",
             data: await Supplier.update_supplier_cargo(supplier_id, req.body)
         });
     }
