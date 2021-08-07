@@ -1,6 +1,6 @@
 import http from "http"
-import winston from 'winston'
 import cluster from "cluster"
+import {logger} from "./config/logger";
 
 require("dotenv").config();
 
@@ -10,21 +10,7 @@ let numOfCPUs = require("os").cpus().length;
 
 const server = http.createServer(app);
 
-const logger = winston.createLogger({
-    level: 'info',
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.colorize(),
-        winston.format.simple(),
-        winston.format.printf((info) => {
-            return `${info.timestamp} - ${info.level}: ${info.message}`;
-        })
-    ),
-    transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({filename: 'logs/logfile.log'})
-    ]
-});
+
 
 if (cluster.isWorker) {
     const {SERVER_HOST, SERVER_PORT} = process.env;

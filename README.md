@@ -1,10 +1,13 @@
 # Cargo Api
 
+[![Build Status](https://travis-ci.com/MajAhd/cargo_api.svg?branch=master)](https://travis-ci.com/MajAhd/cargo_api)
+
+*** 
+
 ## Requirements
 
-- [NodeJs](https://nodejs.org/) >= 10.20.1
-- [Gulp](https://gulpjs.com/) build system: npm install gulp-cli --global
-
+- [NodeJs](https://nodejs.org/) >= 13
+ 
 ## How to start
 
 - Run "npm install" to install all project dependencies from npm
@@ -25,6 +28,7 @@
 - npm run start
 - npm run build
 - npm run start-server
+
 ## Calculate Distance Between 2 Point
 
 ````

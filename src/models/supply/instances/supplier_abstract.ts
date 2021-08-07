@@ -1,13 +1,18 @@
 import {SupplyModel} from "../SupplyModel";
+import {logger} from "../../../../config/logger";
 
 export abstract class SupplierAbstract {
     abstract id: number;
 
-    async get_supply_info(): Promise<object | null | boolean> {
+    async get_supply_info(): Promise<object | null> {
         try {
-            return await SupplyModel.findByPk(this.id)
+            return await SupplyModel.findByPk(this.id);
         } catch (e) {
-            return false
+            logger.log("error", e);
+            return {
+                result: false,
+                msg: "Server didnt response!"
+            }
         }
     }
 

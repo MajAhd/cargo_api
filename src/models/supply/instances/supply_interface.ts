@@ -2,7 +2,7 @@ export interface iSupply {
     id: number;
     license_plate?: string;
 
-    get_supply_info(): object;
+    get_supply_info(): object | null;
 
     new_supplier(carrier_id, license_plate): object;
 

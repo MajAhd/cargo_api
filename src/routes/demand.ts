@@ -2,7 +2,7 @@ import * as express from "express"
 
 require("dotenv").config();
 const router = express.Router();
-import * as DemandController from "../controller/demand_controller"
+import * as DemandController from "../controller/demand.controller"
 
 const demand_url = process.env.API_V1 + "/demand";
 

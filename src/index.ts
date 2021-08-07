@@ -8,7 +8,7 @@ import methodOverride from 'method-override';
 const app = express();
 // routes
 const DemandRoute = require("./routes/demand")
-const SupplyRoute = require("./routes/supply")
+const SupplyRoute = require("./routes/supply.route")
 // App usages
 app.use(compression());
 app.use(bodyParser.urlencoded({extended: true}));
