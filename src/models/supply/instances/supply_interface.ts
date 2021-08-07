@@ -1,14 +1,30 @@
 export interface iSupply {
-    id: number;
-    license_plate?: string;
 
-    get_supply_info(): object | null;
+    get_supply_info(id: number): object | null;
 
-    new_supplier(carrier_id, license_plate): object;
+    new_supplier(params: object): object;
 
-    update_supplier_license_plate(license_plate: string): object;
+    update_supplier_license_plate(id: number, params: object): object;
 
-    update_supplier_geo_info(geo_lat, geo_lon): object;
+    update_supplier_cargo(id: number, params: object): object;
+}
 
-    update_supplier_parcel_info(allowed_weight, current_cargo_weight, current_number_of_pallets, max_number_of_pallets): object;
+export interface iSupplier {
+    license_plate: string,
+    carrier_id: number,
+    geo_lat: number,
+    geo_lon: number,
+    allowed_weight: number,
+    current_cargo_weight: number,
+    current_number_of_pallets: number,
+    max_number_of_pallets: number,
+}
+
+export interface iSupplierCargo {
+    geo_lat: number,
+    geo_lon: number,
+    allowed_weight: number,
+    current_cargo_weight: number,
+    current_number_of_pallets: number,
+    max_number_of_pallets: number,
 }

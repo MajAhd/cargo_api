@@ -7,10 +7,14 @@ export const SupplyModel = MySqlDB.define(
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         license_plate: {
             type: Sequelize.STRING,
             allowNull: true
+        },
+        carrier_id: {
+            type: Sequelize.INTEGER,
         },
         geo_lat: {
             type: Sequelize.DECIMAL,
