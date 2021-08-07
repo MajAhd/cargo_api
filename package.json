@@ -1,0 +1,55 @@
+{
+    "name": "cargo_api",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tiagoajacobi/base-nodejs-express-gulp-project"
+    },
+    "description": "Nodejs webserver bootstrap with express and gulp",
+    "author": "Majid Ahmaditabar",
+    "license": "ISC",
+    "engines": {
+        "node": ">=10.20.1"
+    },
+    "scripts": {
+        "start": "nodemon index.ts",
+        "start-server": "node ./build/index.js",
+        "build": "tsc --project ./",
+        "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'  --exit"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "color-string": "^1.6.0",
+        "compression": "^1.7.4",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "method-override": "^3.0.0",
+        "multer": "^1.4.2",
+        "mysql2": "^2.3.0",
+        "sequelize": "^6.6.5",
+        "validatorjs": "^3.22.1",
+        "winston": "^3.3.3"
+    },
+    "devDependencies": {
+        "@types/body-parser": "^1.19.1",
+        "@types/chai": "^4.2.21",
+        "@types/compression": "^1.7.1",
+        "@types/express": "^4.17.13",
+        "@types/method-override": "^0.0.32",
+        "@types/mocha": "^9.0.0",
+        "@types/node": "^16.4.12",
+        "@types/sequelize": "^4.28.10",
+        "@types/validator": "^13.6.3",
+        "chai": "^4.3.4",
+        "del": "^6.0.0",
+        "gulp": "^3.9.1",
+        "gulp-cli": "^1.4.0",
+        "gulp-nodemon": "^2.2.1",
+        "gulp-typescript": "*",
+        "mocha": "^9.0.3",
+        "nodemon": "^2.0.12",
+        "sequelize-cli": "^6.2.0",
+        "ts-node": "^10.1.0",
+        "typescript": "^4.3.5"
+    }
+}
