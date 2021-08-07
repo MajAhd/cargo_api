@@ -1,4 +1,4 @@
-# base-nodejs-express-gulp-project
+# Cargo Api
 
 ## Requirements
 
@@ -19,6 +19,12 @@
 - Run Migration : npx sequelize-cli db:migrate
 - Run Seed : npx sequelize-cli db:seed:all
 
+## scripts
+
+- npm install
+- npm run start
+- npm run build
+- npm run start-server
 ## Calculate Distance Between 2 Point
 
 ````
@@ -28,6 +34,7 @@ d = R ⋅ c
 where	φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km);
 note that angles need to be in radians to pass to trig functions!
 ````
+
 ````
 SELECT `id`,`name`,
   ACOS( SIN( RADIANS( `latitude` ) ) * SIN( RADIANS( $fLat ) ) + COS( RADIANS( `latitude` ) ) *
@@ -38,4 +45,5 @@ WHERE
   COS( RADIANS( $fLat )) * COS( RADIANS( `longitude` ) - RADIANS( $fLon )) ) * 6380 < 10
 ORDER BY `distance`
 ````
+
 [read more](http://www.movable-type.co.uk/scripts/latlong.html)

@@ -3,7 +3,6 @@
     "__tests__",
     "node_modules",
     "dist",
-    "bin"
   ],
   "compilerOptions": {
     /* Basic Options */

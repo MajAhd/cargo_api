@@ -13,7 +13,7 @@
     },
     "scripts": {
         "start": "nodemon index.ts",
-        "start-server": "node ./build/index.js",
+        "start-server": "node ./dist/index.js",
         "build": "tsc --project ./",
         "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'  --exit"
     },
