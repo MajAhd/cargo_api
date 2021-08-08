@@ -31,6 +31,10 @@ export const DemandModel = MySqlDB.define(
             type: Sequelize.INTEGER,
             defaultValue: 0,
         },
+        status: {
+            type: Sequelize.TINYINT,
+            defaultValue: 1,
+        },
     }
 );
 
