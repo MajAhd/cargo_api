@@ -1,6 +1,6 @@
 {
   "exclude": [
-    "__tests__",
+    "test",
     "node_modules",
     "dist",
   ],
@@ -70,7 +70,10 @@
 
     /* Advanced Options */
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
     "index.d.ts",

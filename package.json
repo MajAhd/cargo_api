@@ -3,13 +3,13 @@
     "version": "0.0.1",
     "repository": {
         "type": "git",
-        "url": "https://github.com/tiagoajacobi/base-nodejs-express-gulp-project"
+        "url": "https://github.com/MajAhd/cargo_api"
     },
-    "description": "Nodejs webserver bootstrap with express and gulp",
+    "description": "Sample Cargo Api",
     "author": "Majid Ahmaditabar",
     "license": "ISC",
     "engines": {
-        "node": ">=10.20.1"
+        "node": ">=14.16.1"
     },
     "scripts": {
         "start": "nodemon index.ts",
@@ -42,15 +42,10 @@
         "@types/mocha": "^9.0.0",
         "@types/node": "^16.4.12",
         "@types/sequelize": "^4.28.10",
-        "@types/validator": "^13.6.3",
         "@types/validatorjs": "^3.15.0",
         "@types/ws": "^7.4.7",
         "chai": "^4.3.4",
         "del": "^6.0.0",
-        "gulp": "^3.9.1",
-        "gulp-cli": "^1.4.0",
-        "gulp-nodemon": "^2.2.1",
-        "gulp-typescript": "*",
         "mocha": "^9.0.3",
         "nodemon": "^2.0.12",
         "sequelize-cli": "^6.2.0",

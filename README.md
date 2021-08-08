@@ -1,19 +1,10 @@
 # Cargo Api
-
-[![Build Status](https://travis-ci.com/MajAhd/cargo_api.svg?branch=master)](https://travis-ci.com/MajAhd/cargo_api)
-
 *** 
 
 ## Requirements
 
 - [NodeJs](https://nodejs.org/) >= 13
- 
-## How to start
 
-- Run "npm install" to install all project dependencies from npm
-- Run "gulp clean" to clean build folder
-- Run "gulp build" to clean and build the project
-- Run "gulp start" to clean, build and start the server
 
 ## Sequilize Scripts
 
