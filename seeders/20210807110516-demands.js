@@ -33,7 +33,7 @@ module.exports = {
                 origin_lon: 4.874785,
                 delivery_lat: 52.246531,
                 delivery_lon:  5.275329,
-                total_weight: 400,
+                total_weight: 200,
                 pallets_qtt: 40,
                 status: 1,
                 createdAt: new Date(),

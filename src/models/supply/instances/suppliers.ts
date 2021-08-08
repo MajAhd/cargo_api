@@ -25,24 +25,25 @@ class Suppliers {
 
     async filter_suppliers(demand, distance): Promise<object> {
         try {
+
             return await SupplyModel.findAll({
                 attributes: ["id", "license_plate", "carrier_id", "geo_lat", "geo_lon",
-                    "allowed_weight", "current_cargo_weight", "current_number_of_pallets",
+                    "allowed_weight", "current_cargo_weight", "current_number_of_pallets", "max_number_of_pallets",
                     [sequelize.literal(" " +
-                    "ACOS( SIN( RADIANS( `geo_lat` ) ) * SIN( RADIANS( " + demand.origin_lat + " ) ) + " +
-                    "COS( RADIANS( `geo_lat` ) ) * COS( RADIANS( " + demand.origin_lat + " )) * COS( RADIANS( `geo_lon` ) - " +
-                    "RADIANS( " + demand.origin_lon + " )) ) * 6380"),
-                    'distance']],
+                        "ACOS( SIN( RADIANS( `geo_lat` ) ) * SIN( RADIANS( " + demand.origin_lat + " ) ) + " +
+                        "COS( RADIANS( `geo_lat` ) ) * COS( RADIANS( " + demand.origin_lat + " )) * COS( RADIANS( `geo_lon` ) - " +
+                        "RADIANS( " + demand.origin_lon + " )) ) * 6380"),
+                        'distance']],
                 where: {
                     [Op.and]: [
                         {
-                            current_cargo_weight: {
-                                [Op.gt]: demand.total_weight
+                            allowed_weight: {
+                                [Op.gt]: sequelize.literal('current_cargo_weight +' + demand.total_weight),
                             }
                         },
                         {
-                            current_number_of_pallets: {
-                                [Op.gt]: demand.pallets_qtt
+                            max_number_of_pallets: {
+                                [Op.gt]: sequelize.literal('current_number_of_pallets +' + demand.pallets_qtt)
                             }
                         }
                     ]

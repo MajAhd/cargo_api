@@ -1,4 +1,5 @@
 import Supplier from "../src/models/supply/instances/supplier";
+import Suppliers from "../src/models/supply/instances/suppliers";
 
 const expect = require('chai').expect
 
@@ -11,6 +12,15 @@ describe("Supplier", () => {
     it('Get undefined Supplier info', async () => {
         let result = await Supplier.get_supply_info(0)
         expect(result).to.be.equal(null);
+    });
+
+    it('Get Suppliers list', async () => {
+        let result = await Suppliers.get_suppliers(1)
+        expect(result).to.be.an('array')
+    });
+    it('Get Suppliers filter', async () => {
+        let result = await Suppliers.filter_suppliers(1, 10)
+        expect(result).to.be.an('object')
     });
 
     // it("new supplier", async () => {
