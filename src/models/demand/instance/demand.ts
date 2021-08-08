@@ -1,12 +1,14 @@
 import {iDemand, iDemandCreate, iDemandUpdate} from "./demand_interface";
 import {logger} from "../../../../config/logger";
 import {DemandModel} from "../DemandModel";
+import Suppliers from "../../supply/instances/suppliers"
+
 
 class Demand implements iDemand {
 
     async get_demand(id: number): Promise<object | null> {
         try {
-            return await DemandModel.findByPk(id);
+            return  await DemandModel.findByPk(id);
         } catch (e) {
             logger.log("error", e);
             return {
@@ -18,7 +20,7 @@ class Demand implements iDemand {
 
     async new_demand(params: iDemandCreate): Promise<object> {
         try {
-            return await DemandModel.create({
+            let saved_demand = await DemandModel.create({
                 user_id: params.user_id,
                 origin_lat: params.origin_lat,
                 origin_lon: params.origin_lon,
@@ -27,6 +29,8 @@ class Demand implements iDemand {
                 pallets_qtt: params.pallets_qtt,
                 total_weight: params.total_weight,
             })
+            await Suppliers.filter_suppliers(saved_demand, 10)
+            return saved_demand;
         } catch (e) {
             logger.log("error", e);
             return {
@@ -47,6 +51,7 @@ class Demand implements iDemand {
             demand.pallets_qtt = params.pallets_qtt;
             demand.total_weight = params.total_weight;
             await demand.save();
+
             return demand;
         } catch (e) {
             logger.log("error", e);

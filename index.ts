@@ -1,6 +1,8 @@
 import http from "http"
 import cluster from "cluster"
 import {logger} from "./config/logger";
+import {Socket} from "./config/socket";
+import {trigger} from "./src/ws_launcher/trigger";
 
 require("dotenv").config();
 
@@ -11,8 +13,29 @@ let numOfCPUs = require("os").cpus().length;
 const server = http.createServer(app);
 
 
-
 if (cluster.isWorker) {
+    /*
+     this is Web socket API launcher that i developed
+     you can use socket-io or any socket library
+     i use ws library
+     more info :
+     https://github.com/MajAhd/ws_launcher
+     */
+    const wss = Socket.init(server);
+    wss.on('connection', function connection(ws) {
+        ws.on('message', async function incoming(message: any) {
+            try {
+                const data = JSON.parse(message);
+                let publisher = await trigger.initial(data['trigger'], data['data'])
+                ws.send(JSON.stringify(publisher))
+            } catch (e) {
+                console.log(e)
+            }
+        });
+    });
+    /*
+      Run Server
+     */
     const {SERVER_HOST, SERVER_PORT} = process.env;
     server.listen(SERVER_PORT, () => {
         logger.log('info', `Cargo Api run Port: ${SERVER_PORT}`);

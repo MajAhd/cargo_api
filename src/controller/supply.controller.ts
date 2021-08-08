@@ -1,5 +1,8 @@
 import Supplier from "../models/supply/instances/supplier";
 import Validator from "validatorjs";
+import Demand from "../models/demand/instance/demand";
+import Suppliers from "../models/supply/instances/suppliers";
+import {Socket} from "../../config/socket";
 /*
    GET Supplier Info :
        - Basic Info
@@ -10,7 +13,7 @@ export const get_supplier = async (req, res, next) => {
     let supplier_id = req.params["supplier_id"];
     res.json({
         status: 200,
-        msg:"Get Supplier",
+        msg: "Get Supplier",
         data: await Supplier.get_supply_info(supplier_id)
     });
 }
@@ -53,11 +56,17 @@ export const post_new_supplier = async (req, res, next) => {
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
-        res.json({
+        let result = {
             status: 200,
-            msg:"Save New Supplier",
+            msg: "Save New Supplier",
             data: await Supplier.new_supplier(req.body)
+        }
+        //Broadcast new supplier via socket
+        Socket.getIO().on('connection', async function connection(ws) {
+            ws.send(JSON.stringify(result))
         });
+        //return supplier via rest
+        res.json(result);
     }
 }
 
@@ -85,7 +94,7 @@ export const post_update_supplier_license_plate = async (req, res, next) => {
     } else if (validation.passes()) {
         res.json({
             status: 200,
-            msg:"Update Supplier license plate",
+            msg: "Update Supplier license plate",
             data: await Supplier.update_supplier_license_plate(supplier_id, req.body)
         });
     }
@@ -126,22 +135,54 @@ export const post_update_supplier_cargo = async (req, res, next) => {
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
-        res.json({
+        let result = {
             status: 200,
-            msg:"Update Supplier supplier cargo",
+            msg: "Update Supplier cargo",
             data: await Supplier.update_supplier_cargo(supplier_id, req.body)
+        }
+        //Broadcast new supplier via socket
+        Socket.getIO().on('connection', async function connection(ws) {
+            ws.send(JSON.stringify(result))
         });
+        //return supplier via rest
+        res.json(result);
     }
 }
-
 
 /*
    GET Filter Suppliers :
    - Distance X km
-   - Weight
+   - demand_id -> which demand need supplier
+ */
+export const get_suppliers = async (req, res, next) => {
+    let page = 0;
+    if ('page' in req.query) {
+        page = parseInt(req.query['page'])
+        if (page === 1) {
+            page = 0
+        }
+    }
+    let suppliers = await Suppliers.get_suppliers(page)
+    res.json({
+        msg: "Get Suppliers",
+        data: suppliers
+    });
+}
+/*
+   GET Filter Suppliers :
+   - Distance X km
+   - demand_id -> which demand need supplier
  */
 export const get_filter_suppliers = async (req, res, next) => {
+    let distance = req.params["distance"];
+    let demand_id = req.params["demand_id"];
+    let demand = await Demand.get_demand(demand_id)
+    let suppliers = await Suppliers.filter_suppliers(demand, distance)
     res.json({
-        status: true,
+        msg: "Filter Suppliers",
+        data: {
+            demand: demand,
+            suppliers: suppliers
+        }
     });
 }
