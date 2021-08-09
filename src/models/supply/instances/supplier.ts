@@ -41,9 +41,17 @@ class Supplier implements iSupply {
     async update_supplier_license_plate(id: number, params: object): Promise<object> {
         try {
             let supplier: any = await SupplyModel.findByPk(id)
-            supplier['license_plate'] = params['license_plate'];
-            await supplier.save();
-            return supplier;
+            if (supplier) {
+                supplier['license_plate'] = params['license_plate'];
+                await supplier.save();
+                return supplier;
+            }
+            return {
+                result: false,
+                msg: "undefined data!"
+            }
+
+
         } catch (e) {
             logger.log("error", e);
             return {
@@ -56,14 +64,20 @@ class Supplier implements iSupply {
     async update_supplier_cargo(id: number, params: iSupplierCargo): Promise<object> {
         try {
             let supplier: any = await this.get_supply_info(id)
-            supplier.geo_lat = params.geo_lat;
-            supplier.geo_lon = params.geo_lon;
-            supplier.allowed_weight = params.allowed_weight;
-            supplier.current_cargo_weight = params.current_cargo_weight;
-            supplier.current_number_of_pallets = params.current_number_of_pallets;
-            supplier.max_number_of_pallets = params.max_number_of_pallets;
-            await supplier.save();
-            return supplier;
+            if (supplier) {
+                supplier.geo_lat = params.geo_lat;
+                supplier.geo_lon = params.geo_lon;
+                supplier.allowed_weight = params.allowed_weight;
+                supplier.current_cargo_weight = params.current_cargo_weight;
+                supplier.current_number_of_pallets = params.current_number_of_pallets;
+                supplier.max_number_of_pallets = params.max_number_of_pallets;
+                await supplier.save();
+                return supplier;
+            }
+            return {
+                result: false,
+                msg: "undefined data!"
+            }
         } catch (e) {
             logger.log("error", e);
             return {

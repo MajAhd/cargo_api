@@ -8,7 +8,7 @@ class Demand implements iDemand {
 
     async get_demand(id: number): Promise<object | null> {
         try {
-            return  await DemandModel.findByPk(id);
+            return await DemandModel.findByPk(id);
         } catch (e) {
             logger.log("error", e);
             return {
@@ -44,15 +44,22 @@ class Demand implements iDemand {
     async update_demand(id: number, params: iDemandUpdate): Promise<object> {
         try {
             let demand: any = await DemandModel.findByPk(id);
-            demand.origin_lat = params.origin_lat;
-            demand.origin_lon = params.origin_lon;
-            demand.delivery_lon = params.delivery_lon;
-            demand.delivery_lat = params.delivery_lat;
-            demand.pallets_qtt = params.pallets_qtt;
-            demand.total_weight = params.total_weight;
-            await demand.save();
+            if (demand) {
+                demand.origin_lat = params.origin_lat;
+                demand.origin_lon = params.origin_lon;
+                demand.delivery_lon = params.delivery_lon;
+                demand.delivery_lat = params.delivery_lat;
+                demand.pallets_qtt = params.pallets_qtt;
+                demand.total_weight = params.total_weight;
+                await demand.save();
+                return demand;
+            }
+            return {
+                result: false,
+                msg: "undefined data!"
+            }
 
-            return demand;
+
         } catch (e) {
             logger.log("error", e);
             return {
@@ -74,9 +81,15 @@ class Demand implements iDemand {
               3 -> Delivered
              */
             let demand: any = await DemandModel.findByPk(id);
-            demand.status = params.status;
-            await demand.save();
-            return demand;
+            if (demand) {
+                demand.status = params.status;
+                await demand.save();
+                return demand;
+            }
+            return {
+                result: false,
+                msg: "undefined data!"
+            }
         } catch (e) {
             logger.log("error", e);
             return {

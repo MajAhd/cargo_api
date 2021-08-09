@@ -23,20 +23,20 @@ describe("Supplier", () => {
         expect(result).to.be.an('object')
     });
 
-    // it("new supplier", async () => {
-    //     let sample_data = {
-    //         license_plate: "license plate " + Math.floor(Math.random() * 500),
-    //         carrier_id: Math.floor(Math.random() * 4),
-    //         geo_lat: 53.75382323,
-    //         geo_lon: 4.75382323,
-    //         allowed_weight: Math.floor(Math.random() * 101),
-    //         current_cargo_weight: Math.floor(Math.random() * 50),
-    //         current_number_of_pallets: Math.floor(Math.random() * 21),
-    //         max_number_of_pallets: Math.floor(Math.random() * 50),
-    //     }
-    //     let result = await Supplier.new_supplier(sample_data)
-    //     expect(result).to.be.an('object')
-    // })
+    it("new supplier", async () => {
+        let sample_data = {
+            license_plate: "license plate " + Math.floor(Math.random() * 500),
+            carrier_id: Math.floor(Math.random() * 4),
+            geo_lat: 53.75382323,
+            geo_lon: 4.75382323,
+            allowed_weight: Math.floor(Math.random() * 101),
+            current_cargo_weight: Math.floor(Math.random() * 50),
+            current_number_of_pallets: Math.floor(Math.random() * 21),
+            max_number_of_pallets: Math.floor(Math.random() * 50),
+        }
+        let result = await Supplier.new_supplier(sample_data)
+        expect(result).to.be.an('object')
+    })
 
     it("update supplier license plate", async () => {
         let sample_data = {

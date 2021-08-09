@@ -14,19 +14,19 @@ describe("Demand", () => {
         })
     })
 
-    // it("new demand", async () => {
-    //     let sample_data = {
-    //         user_id : 1,
-    //         origin_lat: 51.36133500,
-    //         origin_lon: 4.83901200,
-    //         delivery_lon: 5.27532900,
-    //         delivery_lat: 52.24653100,
-    //         pallets_qtt: 10,
-    //         total_weight: 25
-    //     }
-    //     let result = await Demand.new_demand(sample_data)
-    //     expect(result).to.be.an('object')
-    // })
+    it("new demand", async () => {
+        let sample_data = {
+            user_id : 1,
+            origin_lat: 51.36133500,
+            origin_lon: 4.83901200,
+            delivery_lon: 5.27532900,
+            delivery_lat: 52.24653100,
+            pallets_qtt: 10,
+            total_weight: 25
+        }
+        let result = await Demand.new_demand(sample_data)
+        expect(result).to.be.an('object')
+    })
 
 
     it("update demand", async () => {
