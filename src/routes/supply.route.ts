@@ -15,6 +15,6 @@ router.post(supply_url + "/:supplier_id", CarrierMiddleware, SupplyController.po
 router.post(supply_url + "/:supplier_id/cargo", CarrierMiddleware, SupplyController.post_update_supplier_cargo);
 
 
-router.get(supply_url + "/filter/:demand_id/:distance", SupplyController.get_filter_suppliers);
+router.get(supply_url + "/filter/demand/:demand_id/distance/:distance", SupplyController.get_filter_suppliers);
 
 module.exports = router;
