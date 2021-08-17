@@ -12,6 +12,7 @@ export const get_demand = async (req, res, next) => {
     let demand_id = req.params["demand_id"];
     res.json({
         msg: "Get Demand",
+        status: 200,
         data: await Demand.get_demand(demand_id)
     });
 }
@@ -45,7 +46,7 @@ export const post_new_demand = async (req, res, next) => {
     );
     if (validation.fails()) {
         res.json({
-            status: 200,
+            status: 412,
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
@@ -91,7 +92,7 @@ export const post_update_demand = async (req, res, next) => {
     );
     if (validation.fails()) {
         res.json({
-            status: 200,
+            status: 412,
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
@@ -120,7 +121,7 @@ export const post_demand_status = async (req, res, next) => {
     );
     if (validation.fails()) {
         res.json({
-            status: 200,
+            status: 412,
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {

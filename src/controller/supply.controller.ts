@@ -52,7 +52,7 @@ export const post_new_supplier = async (req, res, next) => {
     );
     if (validation.fails()) {
         res.json({
-            status: 200,
+            status: 412,
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
@@ -88,7 +88,7 @@ export const post_update_supplier_license_plate = async (req, res, next) => {
     );
     if (validation.fails()) {
         res.json({
-            status: 200,
+            status: 412,
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
@@ -131,7 +131,7 @@ export const post_update_supplier_cargo = async (req, res, next) => {
     );
     if (validation.fails()) {
         res.json({
-            status: 200,
+            status: 412,
             validations: validation.errors.all(),
         });
     } else if (validation.passes()) {
@@ -165,6 +165,7 @@ export const get_suppliers = async (req, res, next) => {
     let suppliers = await Suppliers.get_suppliers(page)
     res.json({
         msg: "Get Suppliers",
+        status: 200,
         data: suppliers
     });
 }
@@ -180,6 +181,7 @@ export const get_filter_suppliers = async (req, res, next) => {
     let suppliers = await Suppliers.filter_suppliers(demand, distance)
     res.json({
         msg: "Filter Suppliers",
+        status: 200,
         data: {
             demand: demand,
             suppliers: suppliers

@@ -1,5 +1,5 @@
-import {iSupplier, iSupplierCargo, iSupply} from "./supply_interface";
-import {SupplyModel} from "../SupplyModel";
+import {iSupplier, iSupplierCargo, iSupply} from "./supply.interface";
+import {SupplyModel} from "../supply.model";
 import {logger} from "../../../../config/logger";
 
 class Supplier implements iSupply {

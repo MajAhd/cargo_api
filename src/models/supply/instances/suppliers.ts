@@ -1,4 +1,4 @@
-import {SupplyModel} from "../SupplyModel";
+import {SupplyModel} from "../supply.model";
 import sequelize, {Op} from 'sequelize'
 import {logger} from "../../../../config/logger";
 

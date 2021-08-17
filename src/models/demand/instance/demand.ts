@@ -1,6 +1,6 @@
-import {iDemand, iDemandCreate, iDemandUpdate} from "./demand_interface";
+import {iDemand, iDemandCreate, iDemandUpdate} from "./demand.interface";
 import {logger} from "../../../../config/logger";
-import {DemandModel} from "../DemandModel";
+import {DemandModel} from "../demand.model";
 import Suppliers from "../../supply/instances/suppliers"
 
 

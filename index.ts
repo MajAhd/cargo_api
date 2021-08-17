@@ -2,7 +2,7 @@ import http from "http"
 import cluster from "cluster"
 import {logger} from "./config/logger";
 import {Socket} from "./config/socket";
-import {trigger} from "./src/ws_launcher/trigger";
+import {trigger} from "./src/ws.launcher/trigger";
 
 require("dotenv").config();
 
